@@ -16,23 +16,27 @@ def python_trivia_game():
     score = 0
     
     selected_questions = random.sample(questions_list, total_questions)
-    for idx, question in enumerate(selected_questions):
-        print(f"{idx + 1}. {question} ")
-        user_answer = input("Your answer: ").lower().strip()
-        correct_answer = questions[question]
-        
-        if user_answer == correct_answer.lower():
-            print("Correct!\n ")
-            score += 1
-        play_again = input("do you want to play again - [y/n] :  ").lower().strip()
-        if play_again == 'y':
-                        continue
-        else:
-            print(f"Wrong. Correct answer is {correct_answer}.\n")
+    while True: 
+        for idx, question in enumerate(selected_questions):
+            print(f"{idx + 1}. {question} ")
+            user_answer = input("Your answer: ").lower().strip()
+            correct_answer = questions[question]
             
-            
+            if user_answer == correct_answer.lower():
+                print("Correct!\n ")
+                score += 1
+            else:
+                print(f"Wrong. Correct answer is {correct_answer}.\n")
+                    
+        print(f"Your score is {score}/{total_questions}")
+        play_again = input("Do you want to play again? (yes/no): ").lower().strip()
+
+        if play_again == "no":
+            print("Thanks for playing!")
+            break
         
-    
-    print(f"Your score is {score}.")
-        
+        elif play_again != "yes":
+            print("Invalid input. Game ending.")
+            break
+         
 python_trivia_game() 
